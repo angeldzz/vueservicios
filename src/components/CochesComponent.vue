@@ -13,9 +13,10 @@
 
 <script>
 import axios from 'axios'
+import Global from '@/Global'
 //Si necesitamos variables para todo el component y sus metodos
 // se declaran aqui (mounted, methods,create)
-let urlApi = "https://apicochespaco.azurewebsites.net/"
+let urlApi = Global.url
 export default {
     name:"CochesComponent",
     data(){
