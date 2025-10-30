@@ -3,14 +3,14 @@
     <form>
         <label>Introduzca ID:</label>
         <input type="text" v-model="idCustomer">
-        <button v-on:click.prevent="buscarCustomer()">Buscar Cliente</button>
+        <button class="btn btn-primary" v-on:click.prevent="buscarCustomer()">Buscar Cliente</button>
     </form>
     <div v-if="customer">
             <h3>{{ customer.ContactTitle }}</h3>
             <h3>{{ customer.Country }}</h3>
             <h3>{{ customer.Address }}</h3>
     </div>
-    <table v-if="status === true" border="3">
+    <table class="table table-bordered table-striped" v-if="status === true" border="3">
         <thead>
             <tr>
                 <th>ID</th>
