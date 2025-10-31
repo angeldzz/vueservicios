@@ -2,7 +2,7 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Mi Aplicación</a>
+                <a class="navbar-brand" href="#">BALCONING</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -20,12 +20,12 @@
                         <li class="nav-item">
                             <router-link class="nav-link" to="/customers">Customers</router-link>
                         </li>
-                        <li class="nav-item dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" @click="showDropdown = !showDropdown" aria-expanded="false">
                                 Oficios
                             </a>
-                            <ul class="dropdown-menu" :class="{ show: showDropdown }">
-                                <li v-for="oficio in oficios" :key="oficio">
+                            <ul class="dropdown-menu" :class="{ show: showDropdown } ">
+                                <li v-for="oficio in oficios" :key="oficio" @click="showDropdown = !showDropdown">
                                     <router-link class="dropdown-item" :to="'/empleadosoficios/' + oficio">{{ oficio }}</router-link>
                                 </li>
                             </ul>
