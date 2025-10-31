@@ -12,11 +12,10 @@
 </template>
 
 <script>
-import axios from 'axios'
-import Global from '@/Global'
+import ServiceCoches from '../services/ServiceCoches'
+const service = new ServiceCoches()
 //Si necesitamos variables para todo el component y sus metodos
 // se declaran aqui (mounted, methods,create)
-let urlApi = Global.url
 export default {
     name:"CochesComponent",
     data(){
@@ -25,9 +24,8 @@ export default {
         }
     },
     mounted(){
-        let request = "webresources/coches"
-        axios.get(urlApi + request).then(response => {
-            this.coches = response.data
+        service.getCoches.then(response => {
+            this.coches = response
         })
     }
 }
