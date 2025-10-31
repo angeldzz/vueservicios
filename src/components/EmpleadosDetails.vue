@@ -34,11 +34,8 @@
 </template>
 
 <script>
-import Global from '@/Global'
-import axios from 'axios'
-
-let url = Global.urlEmpleados
-
+import ServiceEmpleados from '@/services/ServiceEmpleados'
+const service = new ServiceEmpleados()
 export default {
     name: "EmpleadosDetails",
     data(){
@@ -49,18 +46,16 @@ export default {
         }
     },
     mounted(){
-        let request = "api/Empleados"
-        axios.get(url + request).then(response => {
-            this.empleados = response.data;
+        service.getEmpleados().then(response => {
+            this.empleados = response
         })
     },
     methods:{
         mostrarEmpleado(){
             if( this.idEmpleado !== ""){
-                let request = "api/Empleados/" + this.idEmpleado
-            axios.get(url + request).then(response=>{
-                this.empleado = response.data
-            })
+                service.findEmpleado(this.idEmpleado).then(response => {
+                    this.empleado = response;
+                })
             }
         }
     }
