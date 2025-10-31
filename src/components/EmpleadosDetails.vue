@@ -8,7 +8,7 @@
             <select v-model="idEmpleado" class="form-control">
                 <option v-for="empleado in empleados" :key="empleado" :value="empleado.idEmpleado">{{ empleado.apellido }}</option>
             </select>
-            <button @click.prevent="mostrarEmpleado">Buscar Empleado</button>
+            <button @click.prevent="mostrarEmpleado" class="btn btn-primary mt-2">Buscar Empleado</button>
         </form>
         <table v-if="empleado !== null" class="table table-bordered table-striped">
             <thead>

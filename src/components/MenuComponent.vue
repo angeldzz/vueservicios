@@ -1,61 +1,62 @@
 <template>
     <div>
-        <nav>
-            <ul>
-                <li>
-                    <router-link to="/">Home</router-link>
-                </li>
-                <li>
-                    <router-link to="/coches">Coches</router-link>
-                </li>
-                <li>
-                    <router-link to="/empleadosdetails">Empleados Details</router-link>
-                </li>
-                <li>
-                    <router-link to="/customers">Customers</router-link>
-                </li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Mi Aplicación</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/">Home</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/coches">Coches</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/empleadosdetails">Empleados Details</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/customers">Customers</router-link>
+                        </li>
+                        <li class="nav-item dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
+                                Oficios
+                            </a>
+                            <ul class="dropdown-menu" :class="{ show: showDropdown }">
+                                <li v-for="oficio in oficios" :key="oficio">
+                                    <router-link class="dropdown-item" :to="'/empleadosoficios/' + oficio">{{ oficio }}</router-link>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </div>
+    <router-view></router-view>
 </template>
 
 <script>
+import axios from 'axios'
+import Global from '@/Global';
 export default {
-    name: "MenuComponent"
+    name: "MenuComponent",
+    data() {
+        return {
+            oficios: [],
+            showDropdown: false
+        }
+    },
+    mounted () {
+        let request = "api/empleados/oficios"
+        let url = Global.urlEmpleados
+        axios.get(url + request).then(response => {
+            this.oficios = response.data
+        })
+    },
+    
+    
 }
 </script>
-
-<style lang="scss" scoped>
-nav {
-    background-color: #333;
-    padding: 1rem;
-}
-
-ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    display: inline;
-}
-
-a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-a:hover {
-    background-color: #555;
-}
-
-a.router-link-active {
-    background-color: #007bff;
-}
-</style>
