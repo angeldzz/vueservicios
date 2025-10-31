@@ -8,7 +8,6 @@ export default class ServiceEmpleados {
             let empleados = []
             let request = "api/empleados"
             axios.get( url + request).then(response => {
-                console.log("Leyendo Empleados");
                 empleados = response.data
                 resolve(empleados);
             })
@@ -20,7 +19,6 @@ export default class ServiceEmpleados {
             let empleado = []
             let request = "api/empleados/" + id
             axios.get( url + request).then(response => {
-                console.log("Leyendo Empleados");
                 empleado = response.data
                 resolve(empleado);
             })
@@ -32,7 +30,6 @@ export default class ServiceEmpleados {
             let oficios = []
             let request = "api/Empleados/oficios" 
             axios.get( url + request).then(response => {
-                console.log("Leyendo Empleados");
                 oficios = response.data
                 resolve(oficios);
             })
@@ -44,7 +41,6 @@ export default class ServiceEmpleados {
             let empleados = []
             let request = "api/Empleados/EmpleadosOficio/" + oficio
             axios.get( url + request).then(response => {
-                console.log("Leyendo Empleados");
                 empleados = response.data
                 resolve(empleados);
             })
